@@ -1,5 +1,10 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarpanch Marriage Home</title>
     <style>
         * {
             box-sizing: border-box;
@@ -13,6 +18,17 @@
             color: aliceblue;
             margin: 0;
             cursor: default;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         .container {
@@ -29,59 +45,91 @@
             padding: 10px;
             text-align: center;
             cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
         }
 
         .navbar button {
-            height: 24px;
-            width: 90px;
+            height: 32px;
+            width: 100px;
             border-radius: 18px;
             transition: transform 0.1s ease-in-out;
-            background-image: linear-gradient(to right, rgb(255, 255, 255) , rgb(87, 87, 87));
-            opacity: 6;
+            background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(87, 87, 87));
+            opacity: 0.8;
             align-items: center;
-            border-color: (to right, rgb(0, 0, 0) , rgb(255, 255, 255));
-            border-width: 1.2px;
-            text-decoration: none;
-            text-underline-offset: 1px;
+            border: none;
+            font-weight: bold;
+            color: black;
+            cursor: pointer;
         }
 
         .navbar button:hover {
-            text-align: center;
-            transform: scale(1.16);
+            transform: scale(1.1);
+            background-color: rgb(255, 255, 255);
+            color: black;
+        }
 
+        .navbar a {
+            text-decoration: none;
+            color: inherit;
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 32px;
             font-weight: bold;
-            font-family:Georgia, 'Times New Roman', Times, serif;
-            text-align: center;
-            
-
+            font-family: Georgia, 'Times New Roman', Times, serif;
         }
 
         .banner {
-            height: 300px;
+            height: 400px;
             display: flex;
-            border-radius: 30px;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+            text-align: center;
+            border-radius: 30px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
         }
 
         .banner h1 {
             color: white;
             font-size: 48px;
             text-shadow: 2px 2px 4px black;
+            animation: slideIn 2s ease-in-out;
+        }
+
+        .banner p {
+            color: white;
+            font-size: 24px;
+            font-weight: lighter;
+            margin-top: 10px;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .section {
             padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            margin: 20px 0;
+            border-radius: 10px;
         }
 
         .section h2 {
             font-size: 32px;
             margin-bottom: 10px;
             color: white;
+            animation: fadeIn 1.5s ease-in-out;
         }
 
         .section p {
@@ -90,10 +138,9 @@
         }
 
         .services {
-            display:grid;
-            grid-template-columns: repeat(3,1fr);
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             grid-gap: 30px;
-
         }
 
         .service {
@@ -101,9 +148,13 @@
             border: 1px solid #ccc;
             color: black;
             border-radius: 10px;
-            padding: 10px;
-            height: 485px;
+            padding: 20px;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
 
+        .service:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
         .service img {
@@ -131,9 +182,7 @@
             padding: 10px 20px;
             margin-top: 10px;
             cursor: pointer;
-            transition: transform 0.16s ease-in-out;
-            position:static;
-
+            transition: transform 0.16s ease-in-out, background-color 0.16s ease-in-out;
         }
 
         .service button:hover {
@@ -146,7 +195,7 @@
             border: 1px solid #ccc;
             color: black;
             border-radius: 10px;
-            padding: 10px;
+            padding: 20px;
             margin-top: 20px;
         }
 
@@ -189,20 +238,36 @@
             align-items: center;
             justify-content: center;
             visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
         }
 
         .modal.active {
             visibility: visible;
+            opacity: 1;
         }
 
         .modal-content {
             width: 400px;
-            height: 300px;
+            height: 400px;
             background-color: white;
             border-radius: 10px;
             padding: 20px;
             display: flex;
             flex-direction: column;
+            animation: scaleIn 0.3s ease-in-out;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         .modal-content h3 {
@@ -224,7 +289,7 @@
         }
 
         .modal-content form input[type="submit"] {
-            background: linear-gradient(90deg, #333, #555); /* Gradient background */
+            background: linear-gradient(90deg, #333, #555);
             color: white;
             cursor: pointer;
         }
@@ -250,205 +315,179 @@
             right: 10px;
             width: 20px;
             height: 20px;
-            background-image: url;
-            background-size: cover;
             cursor: pointer;
         }
-        .heading-down {
-          font-size: 28px;
-          font-weight: lighter;
-          text-align: center;
-          margin-top: 8px;
-        }
-        .mail {
-          font-weight: bold;
-        }
-        .phno {
-          font-weight: bold;
-        }
-        .address {
-        color: rgb(255, 255, 255);
-        font-family: Arial, Helvetica, sans-serif;
 
+        .heading-down {
+            font-size: 24px;
+            font-weight: lighter;
+            text-align: center;
+            margin-top: 8px;
         }
+
+        .mail {
+            font-weight: bold;
+        }
+
+        .phno {
+            font-weight: bold;
+        }
+
+        .address {
+            color: rgb(255, 255, 255);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
         .addlink {
-        border-radius: 18px;
-          background-color: #333;
-          opacity: 4;
-          width: 240px;
-          height: 30px;
-          border-color: aliceblue;
-          margin-left: 8px;
+            border-radius: 18px;
+            background-color: #333;
+            opacity: 0.8;
+            width: 180px;
+            height: 40px;
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
         }
-        .address:hover{
-          color: rgb(67, 59, 227);
-        }
-        .menu {
-        color: #000000;
-        font-family:fantasy;
-        font-weight:normal;
-        }
-        .login-head {
-          color: #000000;
-          text-align: center;
-          font-weight: bold;
-          font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+        .addlink:hover {
+            transform: scale(1.2);
+            background-color: #555;
         }
     </style>
-        <script>
-          document.addEventListener("DOMContentLoaded", function () {
-              // Function to open the login modal on page load
-              function openLoginModal() {
-                  document.getElementById("loginModal").classList.add("active");
-              }
-  
-              // Function to close the login modal
-              function closeModal() {
-                  document.getElementById("loginModal").classList.remove("active");
-              }
-  
-              // Open the login modal when the page is loaded
-              openLoginModal();
-  
-              // Close the modal when clicking outside of it
-              window.onclick = function (event) {
-                  var modal = document.getElementById("loginModal");
-                  if (event.target == modal) {
-                      closeModal();
-                  }
-              };
-          });
-      </script>
 </head>
+
 <body>
-  <div class="modal" id="loginModal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h3 class="login-head">Login</h3>
-        <form>
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <input type="submit" value="Login">
-        </form>
-        <span>Don't have an account? <a href="#">Sign Up</a></span>
-    </div>
-</div>
     <div class="container">
         <div class="navbar">
-            <div class="logo">Sarpanch Marriage Home</div>
-            <div class="menu">
-                <button><a href="#home" class="menu">Home</a></button>
-                <button><a href="#about" class="menu">About</a></button>
-                <button><a href="#services" class="menu">Services</a></button>
-                <button><a href="#contact" class="menu">Contact</a></button>
+            <div class="logo">
+                <a href="#home">Sarpanch Marriage Home</a>
+            </div>
+            <div class="actions">
+                <button id="loginBtn">Login</button>
+                <button id="registerBtn">Register</button>
             </div>
         </div>
-        <section id="home">
-        <div class="banner">
-            <h1>Welcome to Sarpanch Marriage Home
-            <p class="heading-down">Your Perfect Venue for Memorable Celebrations</p>
-            </h1>
+
+        <div class="banner" id="home">
+            <h1>Welcome to Sarpanch Marriage Home</h1>
+            <p>Your perfect wedding destination</p>
         </div>
-      </section>
+
         <div class="section">
-          <section id="about">
             <h2>About Us</h2>
-            <p>We are a family-owned and operated marriage home in Bharatpur, Rajasthan. We provide facilities like catering, birthdays, functions, marriage, meetings, etc. We have a spacious hall, a beautiful lawn, and a dedicated staff to make your event memorable. We offer affordable packages and customized menus to suit your needs and budget. Whether you are planning a small gathering or a grand celebration, we are here to make it happen.</p>
+            <p>
+                Sarpanch Marriage Home is your ideal destination for weddings and special events. We offer a range of services to make your event unforgettable, including beautifully decorated halls, catering, and event planning.
+            </p>
         </div>
-      </section>
-      <section id="services">
-        <div class="section">
-            <h2>Our Services</h2>
-            <div class="services">
-                <div class="service">
-                    <img src="https://media.licdn.com/dms/image/C4D12AQEy9gZwrsa25A/article-cover_image-shrink_600_2000/0/1627901533216?e=2147483647&v=beta&t=W0WWAwmqfFHZ6SVDddJsyubZgNBqLd6_fV9-Z8ye5XI" alt="Catering">
-                    <h3>Catering</h3>
-                    <p>We provide delicious and hygienic food for your guests. We have a variety of cuisines and dishes to choose from. We can also cater to your special dietary requirements and preferences.</p>
-                    <button>Book Now</button>
-                </div>
-                <div class="service">
-                    <img src="https://lh3.googleusercontent.com/p/AF1QipPfx0tHhiemJNCWk9nR5zR323PqhB_IckOH-58=s1360-w1360-h1020" alt="Birthdays">
-                    <h3>Birthdays</h3>
-                    <p>We make your birthday party fun and memorable. We have a DJ, a cake, balloons, decorations, games, and more. We can also arrange for a theme party or a surprise party for your loved ones.</p>
-                    <button>Book Now</button>
-                </div>
-                <div class="service">
-                    <img src="https://lh3.googleusercontent.com/p/AF1QipNdhTZ0K8M25gAn3ct5JcFGJmk823onhym1YLo=s1360-w1360-h1020" alt="Functions">
-                    <h3>Functions</h3>
-                    <p>We host all kinds of functions and events, such as anniversaries, engagements, receptions, baby showers, etc. We have a stage, a sound system, a projector, and a lighting system. We can also help you with invitations, photography, and videography.</p>
-                    <button>Book Now</button>
-                  </div>
-                    <div class="service">
-                      <img src="https://media.istockphoto.com/id/1446558097/photo/a-rectangular-new-swimming-pool-with-tan-concrete-edges-in-the-fenced-backyard-of-a-new.webp?b=1&s=170667a&w=0&k=20&c=NT38akjMWTKY5Zh9fMw2G3zFKoHinXzRIxxgxC9rHFU=">
-                      <h3>Swimming Pool</h3>
-                      <p>OPENING SOON!!!!</p>
-                      <button>Book Now</button>
-                  </div>
-                
-                <div class="service">
-                    <img src="https://content.jdmagicbox.com/comp/gaya/s1/9999px631.x631.200205191653.t2s1/catalogue/s-s-marriage-hall-mangal-gauri-road-civil-lines-gaya-banquet-halls-ma0tr8yxlr.jpg" alt="Weddings">
-                    <h3>Weddings</h3>
-                    <p>We make your wedding day special and unforgettable. We have a mandap, a flower decoration, a bridal makeup, a mehndi, and a band. We can also assist you with booking a priest, a pandit, or a registrar.</p>
-                    <button>Book Now</button>
-                </div>
-                <div class="service">
-                    <img src="https://img.freepik.com/free-vector/business-conference-seminar-auditorium-hall-speaker-podium-giving-presentation-audience-seats-event-forum-convention-modern-center_575670-2280.jpg" alt="Meetings">
-                    <h3>Meetings</h3>
-                    <p>We offer a professional and comfortable venue for your meetings, conferences, seminars, workshops, etc. We have a boardroom, a conference hall, and a business center. We can also provide you with a Wi-Fi, a printer, a scanner, and a fax machine.</p>
-                    <button>Book Now</button>
-                </div>
+
+        <div class="section services">
+            <div class="service">
+                <img src="https://images.pexels.com/photos/169198/pexels-photo-169198.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Hall Decoration">
+                <h3>Hall Decoration</h3>
+                <p>Our halls are beautifully decorated to suit your event's theme and style. Choose from a variety of decorations to make your event special.</p>
+                <button>Learn More</button>
+            </div>
+            <div class="service">
+                <img src="https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Catering">
+                <h3>Catering</h3>
+                <p>Enjoy delicious meals prepared by our expert chefs. We offer a variety of cuisines to suit your taste and preferences.</p>
+                <button>Learn More</button>
+            </div>
+            <div class="service">
+                <img src="https://images.pexels.com/photos/2188443/pexels-photo-2188443.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Event Planning">
+                <h3>Event Planning</h3>
+                <p>Our professional event planners will help you plan and organize your event to ensure everything runs smoothly.</p>
+                <button>Learn More</button>
             </div>
         </div>
-      </section>
-      <div class="section">
-        <section id="contact">
-          <h2>Contact Us</h2>
-          <p>For booking inquiries and more information, please contact us:</p>
-            <p class="mail">Email: anujbilouth@gmail.com</p>
-            <p class="phno">Phone: +91-8079092513</p>
-            <p><b>Website: www.sarpanchfarm.in</b></p>
-            <p><b>Address:</b><button class="addlink"><a href="https://www.google.com/maps/dir//Beelauth,+road,+DehraMod,+Bharatpur,+Rajasthan+321028/@27.1485757,77.1909499,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3973b208b4b75149:0x3bfe895a1f37a929!2m2!1d77.2733514!2d27.1485998?entry=ttu" target="_blank" class="address">Mai road, dehramod,Bharatpur,Raj.</a></button></p>
-      </div>
-    </section>
+
         <div class="section">
             <h2>Feedback</h2>
             <div class="feedback">
-                <h3>We value your opinion</h3>
-                <p>Please fill out this form and let us know how was your experience with us. Your feedback will help us improve our services and serve you better.</p>
-                <form>
-                    <input type="text" name="name" placeholder="Name" required>
-                    <input type="email" name="email" placeholder="Email" required>
-                    <textarea name="feedback" placeholder="Enter your feedback here..." required></textarea>
-                    <input type="submit" value="Submit Feedback">
+                <h3>We'd love to hear from you!</h3>
+                <form action="#">
+                    <input type="text" placeholder="Your Name">
+                    <input type="email" placeholder="Your Email">
+                    <textarea placeholder="Your Feedback" rows="5"></textarea>
+                    <input type="submit" value="Submit">
                 </form>
             </div>
         </div>
-        <div class="modal" id="loginModal">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal()">&times;</span>
-                <h3>Login</h3>
-                <form>
-                    <input type="text" name="username" placeholder="Username" required>
-                    <input type="password" name="password" placeholder="Password" required>
-                    <input type="submit" value="Login">
-                </form>
-                <span>Don't have an account? <a href="#">Sign Up</a></span>
+
+        <div class="section">
+            <h2>Contact Us</h2>
+            <div class="address">
+                <p>Email: <a href="mailto:support@yourweddingdestination.com" class="mail">support@yourweddingdestination.com</a></p>
+                <p>Phone: <span class="phno">+1 (234) 567-890</span></p>
+                <p>Address: <span class="address">123 Wedding Lane, Marriage City, 12345</span></p>
             </div>
+        </div>
+    </div>
+
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close" id="closeLoginModal">&times;</span>
+            <h3>Login</h3>
+            <form action="#">
+                <input type="email" placeholder="Email">
+                <input type="password" placeholder="Password">
+                <input type="submit" value="Login">
+            </form>
+            <span id="registerLink">Don't have an account? Register here.</span>
+        </div>
+    </div>
+
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <span class="close" id="closeRegisterModal">&times;</span>
+            <h3>Register</h3>
+            <form action="#">
+                <input type="text" placeholder="Name">
+                <input type="email" placeholder="Email">
+                <input type="password" placeholder="Password">
+                <input type="password" placeholder="Confirm Password">
+                <input type="submit" value="Register">
+            </form>
+            <span id="loginLink">Already have an account? Login here.</span>
         </div>
     </div>
 
     <script>
-        function openModal() {
-            document.getElementById("loginModal").classList.add("active");
-        }
+        const loginBtn = document.getElementById('loginBtn');
+        const registerBtn = document.getElementById('registerBtn');
+        const loginModal = document.getElementById('loginModal');
+        const registerModal = document.getElementById('registerModal');
+        const closeLoginModal = document.getElementById('closeLoginModal');
+        const closeRegisterModal = document.getElementById('closeRegisterModal');
+        const registerLink = document.getElementById('registerLink');
+        const loginLink = document.getElementById('loginLink');
 
-        function closeModal() {
-            document.getElementById("loginModal").classList.remove("active");
-        }
+        loginBtn.addEventListener('click', () => {
+            loginModal.classList.add('active');
+        });
+
+        registerBtn.addEventListener('click', () => {
+            registerModal.classList.add('active');
+        });
+
+        closeLoginModal.addEventListener('click', () => {
+            loginModal.classList.remove('active');
+        });
+
+        closeRegisterModal.addEventListener('click', () => {
+            registerModal.classList.remove('active');
+        });
+
+        registerLink.addEventListener('click', () => {
+            loginModal.classList.remove('active');
+            registerModal.classList.add('active');
+        });
+
+        loginLink.addEventListener('click', () => {
+            registerModal.classList.remove('active');
+            loginModal.classList.add('active');
+        });
     </script>
 </body>
+
 </html>
-                </div>
-            </body>
-            </html>
-            
